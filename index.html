@@ -26,7 +26,7 @@
         */
         :root {
             --azul-marinho: #0A2240;
-            --cinza-frio: #E8E8E8;
+            --cinza-frio: #f0f2f5; /* Tom de cinza mais suave */
             --branco-offwhite: #FDFBF5;
             --dourado-ocre: #D4A056;
             --dourado-ocre-dark: #b98b47;
@@ -34,6 +34,8 @@
             --mkt-digital-turquesa: #40C0B5;
             --autoconhecimento-lavanda: #B4A0C0;
             --medicina-integrativa-verde: #3A6B35;
+            /* <<< GUIA PARA NOVAS CATEGORIAS (PASSO 5) >>> Adicione a cor da sua nova categoria aqui */
+            --financas-pessoais-teal: #206a5d; 
         }
 
         body {
@@ -60,8 +62,10 @@
         .bg-mkt-digital { background-color: var(--mkt-digital-turquesa); }
         .bg-autoconhecimento { background-color: var(--autoconhecimento-lavanda); }
         .bg-medicina-integrativa { background-color: var(--medicina-integrativa-verde); }
+        /* <<< GUIA PARA NOVAS CATEGORIAS (PASSO 6) >>> Crie a classe de cor para sua nova categoria aqui */
+        .bg-financas-pessoais { background-color: var(--financas-pessoais-teal); }
 
-        /* Estilos para o menu suspenso (Mega Menu) */
+        /* Estilos para o menu suspenso (Dropdown) */
         .group:hover .group-hover\:block {
             display: block;
         }
@@ -108,32 +112,34 @@
                 <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-dourado-ocre"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path></svg>
                 <span class="text-2xl font-bold text-azul-marinho font-serif">Epollo</span>
             </a>
-            <!-- Menu para Desktop -->
+            <!-- Menu para Desktop (escondido em telas pequenas) -->
             <div class="hidden md:flex items-center space-x-8">
                 <a href="#home" class="text-azul-marinho hover:text-dourado-ocre transition duration-300 nav-link">Home</a>
                 <div class="relative group">
                     <a href="#ebooks" class="text-azul-marinho hover:text-dourado-ocre transition duration-300 nav-link">Ebooks</a>
-                    <!-- Mega Menu de Categorias -->
-                    <!-- <div class="absolute hidden group-hover:block bg-branco-offwhite shadow-lg mt-2 rounded-lg w-96 p-6 z-10">
-                        <h3 class="font-serif text-lg mb-4">Nossas Categorias</h3>
-                        <div class="grid grid-cols-2 gap-4">
-                            <a href="#ebooks" data-category="Culinária" class="block p-2 rounded-md hover:bg-cinza-frio nav-link category-link transition-colors duration-200">Culinária</a>
-                            <a href="#ebooks" data-category="Marketing Digital" class="block p-2 rounded-md hover:bg-cinza-frio nav-link category-link transition-colors duration-200">Marketing Digital</a>
-                            <a href="#ebooks" data-category="Autoconhecimento" class="block p-2 rounded-md hover:bg-cinza-frio nav-link category-link transition-colors duration-200">Autoconhecimento</a>
-                            <a href="#ebooks" data-category="Medicina Integrativa" class="block p-2 rounded-md hover:bg-cinza-frio nav-link category-link transition-colors duration-200">Medicina Integrativa</a>
-                        </div>
-                    </div> -->
+                    
+                    <!-- ======================================================================= -->
+                    <!-- MENU DROPDOWN SIMPLIFICADO                                              -->
+                    <!-- ======================================================================= -->
+                    <div class="absolute hidden group-hover:block bg-branco-offwhite shadow-lg mt-2 rounded-lg w-56 p-2 z-10">
+                        <!-- <<< GUIA PARA NOVAS CATEGORIAS (PASSO 1) >>> Adicione sua nova categoria na lista abaixo. -->
+                        <a href="#ebooks" data-category="Culinária" class="block px-4 py-2 text-azul-marinho hover:bg-cinza-frio rounded-md nav-link category-link">Culinária</a>
+                        <a href="#ebooks" data-category="Marketing Digital" class="block px-4 py-2 text-azul-marinho hover:bg-cinza-frio rounded-md nav-link category-link">Marketing Digital</a>
+                        <a href="#ebooks" data-category="Autoconhecimento" class="block px-4 py-2 text-azul-marinho hover:bg-cinza-frio rounded-md nav-link category-link">Autoconhecimento</a>
+                        <a href="#ebooks" data-category="Medicina Integrativa" class="block px-4 py-2 text-azul-marinho hover:bg-cinza-frio rounded-md nav-link category-link">Medicina Integrativa</a>
+                        <a href="#ebooks" data-category="Finanças Pessoais" class="block px-4 py-2 text-azul-marinho hover:bg-cinza-frio rounded-md nav-link category-link">Finanças Pessoais</a>
+                    </div>
                 </div>
                 <a href="#para-autores" class="text-azul-marinho hover:text-dourado-ocre transition duration-300 nav-link">Para Autores</a>
                 <a href="#sobre-nos" class="text-azul-marinho hover:text-dourado-ocre transition duration-300 nav-link">Sobre Nós</a>
                 <a href="#contato" class="text-azul-marinho hover:text-dourado-ocre transition duration-300 nav-link">Contato</a>
             </div>
-            <!-- Botão do Menu Mobile -->
+            <!-- Botão do Menu Mobile (visível apenas em telas pequenas) -->
             <button id="mobile-menu-button" class="md:hidden">
                 <i data-lucide="menu"></i>
             </button>
         </nav>
-        <!-- Menu Mobile (oculto por padrão) -->
+        <!-- Menu Mobile (oculto por padrão, controlado por JS) -->
         <div id="mobile-menu" class="hidden md:hidden bg-branco-offwhite p-4">
             <a href="#home" class="block py-2 nav-link">Home</a>
             <a href="#ebooks" class="block py-2 nav-link">Ebooks</a>
@@ -154,16 +160,16 @@
             <div class="relative h-[80vh] min-h-[500px] bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1506126613408-4e61f3ee836a?q=80&w=2000&auto=format&fit=crop');">
                 <div class="absolute inset-0 bg-azul-marinho bg-opacity-60"></div>
                 <div class="relative container mx-auto px-6 h-full flex flex-col justify-center items-start text-white">
-                    <h1 class="text-5xl md:text-7xl font-bold leading-tight text-shadow-lg">Conhecimento que Transforma</h1>
-                    <p class="text-xl mt-4 max-w-2xl text-shadow">Epollo: Iluminando Caminhos para o Conhecimento e o Bem-Estar.</p>
+                    <h1 class="text-4xl sm:text-5xl md:text-7xl font-bold leading-tight text-shadow-lg">Conhecimento que Transforma</h1>
+                    <p class="text-lg md:text-xl mt-4 max-w-2xl text-shadow">Epollo: Iluminando Caminhos para o Conhecimento e o Bem-Estar.</p>
                     <a href="#ebooks" class="mt-8 bg-dourado-ocre text-azul-marinho font-bold py-3 px-8 rounded-lg text-lg hover:bg-dourado-ocre-dark button-effect hover:scale-105 nav-link">Explore nossos Ebooks</a>
                 </div>
             </div>
 
             <!-- Seção de Lançamentos -->
-            <div class="py-16 md:py-24">
+            <div class="py-12 md:py-24">
                 <div class="container mx-auto px-6">
-                    <h2 class="text-4xl text-center font-bold mb-12">Nossos Lançamentos</h2>
+                    <h2 class="text-3xl md:text-4xl text-center font-bold mb-12">Nossos Lançamentos</h2>
                     <div id="lancamentos-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
                         <!-- Os cartões dos livros de lançamento são inseridos aqui pelo JavaScript -->
                     </div>
@@ -171,50 +177,41 @@
             </div>
 
             <!-- Seção de Categorias -->
-            <div class="bg-cinza-frio py-16 md:py-24">
+            <div class="bg-cinza-frio py-12 md:py-24">
                 <div class="container mx-auto px-6">
-                    <h2 class="text-4xl text-center font-bold mb-12">Explore por Categoria</h2>
+                    <h2 class="text-3xl md:text-4xl text-center font-bold mb-12">Explore por Categoria</h2>
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                         <!-- Links para as categorias de livros -->
                         <a href="#ebooks" data-category="Culinária" class="group block rounded-lg overflow-hidden card-hover-effect nav-link category-link">
                             <div class="h-48 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1490645935967-10de6ba17021?q=80&w=1700&auto=format&fit=crop')"></div>
-                            <div class="p-6 bg-culinaria text-white text-center">
-                                <h3 class="text-2xl font-serif font-bold">Culinária</h3>
-                            </div>
+                            <div class="p-6 bg-culinaria text-white text-center"><h3 class="text-2xl font-serif font-bold">Culinária</h3></div>
                         </a>
                         <a href="#ebooks" data-category="Marketing Digital" class="group block rounded-lg overflow-hidden card-hover-effect nav-link category-link">
                             <div class="h-48 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1557862921-37829c790f19?q=80&w=1700&auto=format&fit=crop')"></div>
-                            <div class="p-6 bg-mkt-digital text-white text-center">
-                                <h3 class="text-2xl font-serif font-bold">Marketing Digital</h3>
-                            </div>
+                            <div class="p-6 bg-mkt-digital text-white text-center"><h3 class="text-2xl font-serif font-bold">Marketing Digital</h3></div>
                         </a>
                         <a href="#ebooks" data-category="Autoconhecimento" class="group block rounded-lg overflow-hidden card-hover-effect nav-link category-link">
                             <div class="h-48 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1474418397713-7e15e4d547e6?q=80&w=1700&auto=format&fit=crop')"></div>
-                            <div class="p-6 bg-autoconhecimento text-white text-center">
-                                <h3 class="text-2xl font-serif font-bold">Autoconhecimento</h3>
-                            </div>
+                            <div class="p-6 bg-autoconhecimento text-white text-center"><h3 class="text-2xl font-serif font-bold">Autoconhecimento</h3></div>
                         </a>
                         <a href="#ebooks" data-category="Medicina Integrativa" class="group block rounded-lg overflow-hidden card-hover-effect nav-link category-link">
                             <div class="h-48 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=1700&auto=format&fit=crop')"></div>
-                            <div class="p-6 bg-medicina-integrativa text-white text-center">
-                                <h3 class="text-2xl font-serif font-bold">Medicina Integrativa</h3>
-                            </div>
+                            <div class="p-6 bg-medicina-integrativa text-white text-center"><h3 class="text-2xl font-serif font-bold">Medicina Integrativa</h3></div>
                         </a>
                     </div>
                 </div>
             </div>
             
             <!-- Seção "Sobre Nós" na Home -->
-            <div class="py-16 md:py-24">
+            <div class="py-12 md:py-24">
                 <div class="container mx-auto px-6">
                     <div class="grid md:grid-cols-2 gap-12 items-center">
                         <div class="text-center md:text-left">
-                            <h2 class="text-4xl font-bold">Uma Curadora de Conhecimento</h2>
-                            <p class="text-xl mt-4 max-w-xl mx-auto md:mx-0 text-gray-700 leading-relaxed">Inspirada em Apolo, deus da luz e da sabedoria, a Epollo nasceu com a missão de iluminar mentes e transformar vidas através de conteúdo de alta qualidade. Somos mais que uma editora; somos uma ponte entre autores brilhantes e leitores em busca de crescimento.</p>
+                            <h2 class="text-3xl md:text-4xl font-bold">Uma Curadora de Conhecimento</h2>
+                            <p class="text-lg md:text-xl mt-4 max-w-xl mx-auto md:mx-0 text-gray-700 leading-relaxed">Inspirada em Apolo, deus da luz e da sabedoria, a Epollo nasceu com a missão de iluminar mentes e transformar vidas através de conteúdo de alta qualidade. Somos mais que uma editora; somos uma ponte entre autores brilhantes e leitores em busca de crescimento.</p>
                             <a href="#sobre-nos" class="mt-8 inline-block bg-dourado-ocre text-azul-marinho font-bold py-3 px-8 rounded-lg text-lg hover:bg-dourado-ocre-dark button-effect hover:scale-105 nav-link">Saiba Mais sobre Nossa História</a>
                         </div>
                         <div class="order-first md:order-last">
-                            <!-- <<< EDITE AQUI >>> Troque o link 'src' abaixo pela URL da imagem que você deseja usar. -->
                             <img src="https://placehold.co/600x450/E8E8E8/0A2240?text=Epollo" alt="Imagem representando a Editora Epollo" class="rounded-lg shadow-xl w-full h-auto">
                         </div>
                     </div>
@@ -222,29 +219,31 @@
             </div>
 
             <!-- Seção "Chamada para Autores" na Home -->
-            <div class="bg-cinza-frio py-16 md:py-24">
+            <div class="bg-cinza-frio py-12 md:py-24">
                 <div class="container mx-auto px-6 text-center">
-                    <h2 class="text-4xl font-bold">Você é escritor?</h2>
-                    <p class="text-xl mt-4 max-w-3xl mx-auto">A Epollo busca talentos que desejam iluminar o mundo com suas ideias. Junte-se a uma editora que valoriza a excelência e a parceria estratégica.</p>
+                    <h2 class="text-3xl md:text-4xl font-bold">Você é escritor?</h2>
+                    <p class="text-lg md:text-xl mt-4 max-w-3xl mx-auto">A Epollo busca talentos que desejam iluminar o mundo com suas ideias. Junte-se a uma editora que valoriza a excelência e a parceria estratégica.</p>
                     <a href="#para-autores" class="mt-8 inline-block bg-azul-marinho text-white font-bold py-3 px-8 rounded-lg text-lg hover:bg-opacity-90 button-effect hover:scale-105 nav-link">Publique Conosco</a>
                 </div>
             </div>
         </section>
 
         <!-- ### PÁGINA: EBOOKS (CATÁLOGO) ### -->
-        <section id="ebooks" class="page-section py-16 md:py-24">
+        <section id="ebooks" class="page-section py-12 md:py-24">
             <div class="container mx-auto px-6">
-                <h1 class="text-5xl font-bold text-center mb-4">Nosso Catálogo de Ebooks</h1>
-                <p id="category-description" class="text-xl text-center text-gray-600 max-w-3xl mx-auto mb-12">Explore nossa coleção curada de conhecimento transformador.</p>
+                <h1 class="text-4xl md:text-5xl font-bold text-center mb-4">Nosso Catálogo de Ebooks</h1>
+                <p id="category-description" class="text-lg md:text-xl text-center text-gray-600 max-w-3xl mx-auto mb-12">Explore nossa coleção curada de conhecimento transformador.</p>
 
                 <!-- Controles de Filtro e Classificação -->
                 <div class="flex flex-col md:flex-row justify-between items-center mb-8 gap-4">
                     <div class="flex flex-wrap justify-center gap-2">
+                        <!-- <<< GUIA PARA NOVAS CATEGORIAS (PASSO 3) >>> Adicione o botão de filtro para sua nova categoria aqui. -->
                         <button class="filter-btn bg-dourado-ocre text-white py-2 px-4 rounded-md button-effect" data-filter="*">Todos</button>
                         <button class="filter-btn bg-gray-200 text-azul-marinho py-2 px-4 rounded-md button-effect" data-filter="Culinária">Culinária</button>
                         <button class="filter-btn bg-gray-200 text-azul-marinho py-2 px-4 rounded-md button-effect" data-filter="Marketing Digital">Marketing Digital</button>
                         <button class="filter-btn bg-gray-200 text-azul-marinho py-2 px-4 rounded-md button-effect" data-filter="Autoconhecimento">Autoconhecimento</button>
                         <button class="filter-btn bg-gray-200 text-azul-marinho py-2 px-4 rounded-md button-effect" data-filter="Medicina Integrativa">Medicina Integrativa</button>
+                        <button class="filter-btn bg-gray-200 text-azul-marinho py-2 px-4 rounded-md button-effect" data-filter="Finanças Pessoais">Finanças Pessoais</button>
                     </div>
                     <div>
                         <select id="sort-select" class="p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-dourado-ocre focus:border-dourado-ocre">
@@ -263,22 +262,22 @@
         </section>
 
         <!-- ### PÁGINA: DETALHES DO LIVRO ### -->
-        <section id="book-detail" class="page-section py-16 md:py-24">
+        <section id="book-detail" class="page-section py-12 md:py-24">
             <div id="book-detail-content" class="container mx-auto px-6">
                 <!-- O conteúdo detalhado do livro é inserido aqui pelo JavaScript -->
             </div>
         </section>
 
         <!-- ### PÁGINA: PARA AUTORES ### -->
-        <section id="para-autores" class="page-section py-16 md:py-24">
+        <section id="para-autores" class="page-section py-12 md:py-24">
             <div class="container mx-auto px-6">
-                <h1 class="text-5xl font-bold text-center mb-6">Publique com a Epollo</h1>
-                <p class="text-xl text-center text-gray-600 max-w-3xl mx-auto mb-16">Buscamos parceiros que compartilham nosso compromisso com a excelência, a curadoria criteriosa e a sabedoria.</p>
+                <h1 class="text-4xl md:text-5xl font-bold text-center mb-6">Publique com a Epollo</h1>
+                <p class="text-lg md:text-xl text-center text-gray-600 max-w-3xl mx-auto mb-16">Buscamos parceiros que compartilham nosso compromisso com a excelência, a curadoria criteriosa e a sabedoria.</p>
 
                 <div class="max-w-4xl mx-auto">
                     <!-- Nosso Processo Editorial -->
                     <div class="mb-12">
-                        <h2 class="text-3xl font-bold mb-8 text-center">Nosso Processo Editorial</h2>
+                        <h2 class="text-3xl md:text-4xl font-bold mb-8 text-center">Nosso Processo Editorial</h2>
                         <div class="grid md:grid-cols-3 gap-8 text-center">
                             <div class="flex flex-col items-center">
                                 <div class="bg-dourado-ocre text-white rounded-full p-4 mb-4"><i data-lucide="file-text" class="w-8 h-8"></i></div>
@@ -299,8 +298,8 @@
                     </div>
 
                     <!-- Formulário de Submissão -->
-                    <div class="bg-cinza-frio p-8 rounded-lg shadow-lg">
-                        <h2 class="text-3xl font-bold mb-6 text-center">Envie seu Manuscrito</h2>
+                    <div class="bg-cinza-frio p-6 md:p-8 rounded-lg shadow-lg">
+                        <h2 class="text-2xl md:text-3xl font-bold mb-6 text-center">Envie seu Manuscrito</h2>
                         <form id="submission-form" class="space-y-6">
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <input id="author-name" type="text" placeholder="Nome Completo" required class="p-3 rounded-md border border-gray-300 w-full focus:ring-2 focus:ring-dourado-ocre">
@@ -308,11 +307,13 @@
                             </div>
                             <input id="manuscript-title" type="text" placeholder="Título Provisório do Manuscrito" required class="p-3 rounded-md border border-gray-300 w-full focus:ring-2 focus:ring-dourado-ocre">
                             <select id="manuscript-category" required class="p-3 rounded-md border border-gray-300 w-full text-gray-500 focus:ring-2 focus:ring-dourado-ocre">
+                                <!-- <<< GUIA PARA NOVAS CATEGORIAS (PASSO 4) >>> Adicione a opção para sua nova categoria aqui. -->
                                 <option value="">Selecione a Categoria</option>
                                 <option value="Culinária">Culinária</option>
                                 <option value="Marketing Digital">Marketing Digital</option>
                                 <option value="Autoconhecimento">Autoconhecimento</option>
                                 <option value="Medicina Integrativa">Medicina Integrativa</option>
+                                <option value="Finanças Pessoais">Finanças Pessoais</option>
                             </select>
                             <textarea id="manuscript-pitch" placeholder="Breve resumo da obra (Elevator Pitch - máx 150 palavras)" rows="4" required class="p-3 rounded-md border border-gray-300 w-full focus:ring-2 focus:ring-dourado-ocre"></textarea>
                             <div>
@@ -332,11 +333,11 @@
         </section>
         
         <!-- ### PÁGINA: SOBRE NÓS ### -->
-        <section id="sobre-nos" class="page-section py-16 md:py-24">
+        <section id="sobre-nos" class="page-section py-12 md:py-24">
             <div class="container mx-auto px-6">
                 <div class="text-center mb-16">
-                    <h1 class="text-5xl font-bold">Nossa História</h1>
-                    <p class="text-xl mt-4 max-w-3xl mx-auto text-gray-700">Epollo: Iluminando Caminhos para o Conhecimento e o Bem-Estar.</p>
+                    <h1 class="text-4xl md:text-5xl font-bold">Nossa História</h1>
+                    <p class="text-lg md:text-xl mt-4 max-w-3xl mx-auto text-gray-700">Epollo: Iluminando Caminhos para o Conhecimento e o Bem-Estar.</p>
                 </div>
 
                 <div class="grid md:grid-cols-2 gap-12 items-center">
@@ -350,7 +351,7 @@
                     </div>
                 </div>
 
-                <div class="mt-24">
+                <div class="mt-16 md:mt-24">
                     <div class="grid md:grid-cols-3 gap-10 text-center">
                         <div class="bg-cinza-frio p-8 rounded-lg"><i data-lucide="rocket" class="w-12 h-12 mx-auto text-dourado-ocre mb-4"></i><h3 class="text-2xl font-bold mb-2">Nossa Missão</h3><p class="text-gray-700">Publicar obras excepcionais que inspirem o autodesenvolvimento, a saúde integral e o sucesso profissional.</p></div>
                         <div class="bg-cinza-frio p-8 rounded-lg"><i data-lucide="eye" class="w-12 h-12 mx-auto text-dourado-ocre mb-4"></i><h3 class="text-2xl font-bold mb-2">Nossa Visão</h3><p class="text-gray-700">Ser a editora digital de referência no Brasil em bem-estar e conhecimento prático, reconhecida pela excelência.</p></div>
@@ -370,11 +371,11 @@
     <!-- ======================================================================= -->
     <footer class="bg-azul-marinho text-white">
         <div class="container mx-auto px-6 py-12">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 text-center md:text-left">
                 <div><h3 class="text-xl font-serif font-bold mb-4">Epollo</h3><p class="text-gray-400">Iluminando Caminhos para o Conhecimento e o Bem-Estar.</p></div>
                 <div><h3 class="text-lg font-bold mb-4">Navegue</h3><ul class="space-y-2"><li><a href="#home" class="text-gray-400 hover:text-white nav-link">Home</a></li><li><a href="#ebooks" class="text-gray-400 hover:text-white nav-link">Ebooks</a></li><li><a href="#para-autores" class="text-gray-400 hover:text-white nav-link">Para Autores</a></li><li><a href="#contato" class="text-gray-400 hover:text-white nav-link">Contato</a></li></ul></div>
                 <div><h3 class="text-lg font-bold mb-4">Legal</h3><ul class="space-y-2"><li><a href="#" class="text-gray-400 hover:text-white">Política de Privacidade</a></li><li><a href="#" class="text-gray-400 hover:text-white">Termos de Serviço</a></li></ul></div>
-                <div><h3 class="text-lg font-bold mb-4">Conecte-se</h3><div class="flex space-x-4"><a href="#" class="text-gray-400 hover:text-white"><i data-lucide="instagram"></i></a><a href="#" class="text-gray-400 hover:text-white"><i data-lucide="linkedin"></i></a><a href="#" class="text-gray-400 hover:text-white"><i data-lucide="facebook"></i></a></div></div>
+                <div><h3 class="text-lg font-bold mb-4">Conecte-se</h3><div class="flex space-x-4 justify-center md:justify-start"><a href="#" class="text-gray-400 hover:text-white"><i data-lucide="instagram"></i></a><a href="#" class="text-gray-400 hover:text-white"><i data-lucide="linkedin"></i></a><a href="#" class="text-gray-400 hover:text-white"><i data-lucide="facebook"></i></a></div></div>
             </div>
             <div class="mt-12 border-t border-gray-700 pt-6 text-center text-gray-500"><p>&copy; 2025 Editora Epollo. Todos os direitos reservados.</p></div>
         </div>
@@ -383,7 +384,6 @@
     <!-- ======================================================================= -->
     <!-- JANELA MODAL (POP-UP)                                                   -->
     <!-- ======================================================================= -->
-    <!-- Modal para o Link Universal de Livro (UBL) -->
     <div id="ubl-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden items-center justify-center p-4">
         <div class="bg-branco-offwhite rounded-lg shadow-xl p-8 max-w-md w-full relative fade-in">
             <button id="close-modal-button" class="absolute top-4 right-4 text-gray-500 hover:text-black"><i data-lucide="x"></i></button>
@@ -408,6 +408,7 @@
         // Para adicionar um novo livro, basta copiar um dos blocos abaixo, colar no final da lista,
         // e alterar as informações (id, title, author, price, etc.).
         const books = [
+            // <<< GUIA PARA NOVAS CATEGORIAS (PASSO 2) >>> Adicione os livros da sua nova categoria aqui.
             { id: 1, title: "A Arte do Pão", author: "Juliana Alves", category: "Culinária", launch: true, price: "R$ 39,90", cover: "400x600/C8755A/FFFFFF?text=A+Arte+do+Pão", description: "Descubra os segredos da fermentação natural e crie pães artesanais incríveis na sua própria cozinha. Um guia completo desde o levain até a fornada perfeita.", summary: "1. Introdução à Fermentação\n2. Criando seu Levain\n3. Técnicas de Sova\n4. Receitas Clássicas\n5. Pães Especiais", reviews: ["Um livro essencial para qualquer amante de pão! - Chef Famoso"] },
             { id: 2, title: "Gatilhos Mentais", author: "Lucas Martins", category: "Marketing Digital", launch: true, price: "R$ 49,90", cover: "400x600/40C0B5/FFFFFF?text=Gatilhos+Mentais", description: "Domine a arte da persuasão ética. Este ebook revela os principais gatilhos mentais e como aplicá-los para aumentar suas conversões e criar campanhas de marketing mais eficazes.", summary: "1. O que são Gatilhos Mentais?\n2. Escassez e Urgência\n3. Prova Social\n4. Autoridade\n5. Reciprocidade", reviews: ["Leitura obrigatória para qualquer profissional de marketing. - Revista Digital"] },
             { id: 3, title: "O Poder do Agora", author: "Sofia Pereira", category: "Autoconhecimento", launch: true, price: "R$ 34,90", cover: "400x600/B4A0C0/FFFFFF?text=O+Poder+do+Agora", description: "Aprenda a viver no presente e a encontrar a paz interior. Um guia prático com exercícios de mindfulness e meditação para reduzir a ansiedade e aumentar seu foco.", summary: "1. A Mente Inquieta\n2. A Prática da Atenção Plena\n3. Meditações Guiadas\n4. Integrando no Dia a Dia", reviews: ["Transformador. Mudou minha perspectiva de vida. - Leitor Satisfeito"] },
@@ -416,10 +417,10 @@
             { id: 6, title: "SEO para E-commerce", author: "Carla Ferreira", category: "Marketing Digital", launch: false, price: "R$ 59,90", cover: "400x600/40C0B5/FFFFFF?text=SEO+para+E-commerce", description: "Aumente a visibilidade da sua loja online. Um guia passo a passo para otimizar seu site e atrair mais clientes através do Google.", summary: "...", reviews: [] },
             { id: 7, title: "Inteligência Emocional", author: "Ricardo Nunes", category: "Autoconhecimento", launch: false, price: "R$ 37,90", cover: "400x600/B4A0C0/FFFFFF?text=Inteligência+Emocional", description: "Desenvolva a capacidade de entender e gerenciar suas emoções para ter mais sucesso na vida pessoal e profissional.", summary: "...", reviews: [] },
             { id: 8, title: "Saúde Holística", author: "Dr. Pedro Lima", category: "Medicina Integrativa", launch: false, price: "R$ 42,90", cover: "400x600/3A6B35/FFFFFF?text=Saúde+Holística", description: "Um guia completo sobre as práticas que integram corpo, mente e espírito para uma vida mais longa e saudável.", summary: "...", reviews: [] },
+            { id: 9, title: "Investidor Inteligente", author: "Beatriz Oliveira", category: "Finanças Pessoais", launch: false, price: "R$ 55,00", cover: "400x600/206a5d/FFFFFF?text=Investidor+Inteligente", description: "Um guia prático para quem quer começar a investir, desde a reserva de emergência até a bolsa de valores.", summary: "...", reviews: [] },
         ];
 
         // --- SELETORES DE ELEMENTOS DO DOM ---
-        // Guardamos os elementos mais usados em variáveis para não ter que buscá-los toda hora.
         const lancamentosGrid = document.getElementById('lancamentos-grid');
         const ebooksGrid = document.getElementById('ebooks-grid');
         const bookDetailContent = document.getElementById('book-detail-content');
@@ -438,13 +439,6 @@
         const submissionSuccess = document.getElementById('submission-success');
 
         // --- FUNÇÕES DE RENDERIZAÇÃO ---
-        // Funções responsáveis por desenhar o conteúdo na tela.
-
-        /**
-         * Cria o HTML para um único cartão de livro.
-         * @param {object} book - O objeto do livro.
-         * @returns {string} O HTML do cartão.
-         */
         function createBookCard(book) {
             return `
                 <div class="book-card group cursor-pointer" data-id="${book.id}">
@@ -460,20 +454,11 @@
             `;
         }
 
-        /**
-         * Renderiza uma lista de livros em um container específico.
-         * @param {HTMLElement} container - O elemento onde os livros serão inseridos.
-         * @param {Array} bookList - A lista de objetos de livros.
-         */
         function renderBooks(container, bookList) {
             container.innerHTML = bookList.map(createBookCard).join('');
             addBookCardEventListeners();
         }
 
-        /**
-         * Cria o HTML para a página de detalhes de um livro.
-         * @param {object} book - O objeto do livro selecionado.
-         */
         function renderBookDetail(book) {
             bookDetailContent.innerHTML = `
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 fade-in">
@@ -481,9 +466,9 @@
                         <img src="https://placehold.co/${book.cover}" alt="Capa do livro ${book.title}" class="w-full rounded-lg shadow-2xl">
                     </div>
                     <div class="md:col-span-2">
-                        <h1 class="text-5xl font-bold">${book.title}</h1>
-                        <p class="text-2xl text-gray-700 mt-2">por ${book.author}</p>
-                        <p class="text-4xl font-bold text-dourado-ocre mt-4">${book.price}</p>
+                        <h1 class="text-4xl md:text-5xl font-bold">${book.title}</h1>
+                        <p class="text-xl md:text-2xl text-gray-700 mt-2">por ${book.author}</p>
+                        <p class="text-3xl md:text-4xl font-bold text-dourado-ocre mt-4">${book.price}</p>
                         <button id="open-modal-button" data-title="${book.title}" class="mt-6 bg-dourado-ocre text-azul-marinho font-bold py-3 px-8 rounded-lg text-lg hover:bg-dourado-ocre-dark button-effect hover:scale-105 w-full md:w-auto">Onde Comprar</button>
                         
                         <div class="mt-12">
@@ -504,57 +489,42 @@
         }
 
         // --- LÓGICA DE NAVEGAÇÃO E INTERAÇÃO ---
-        
-        /**
-         * Controla qual "página" (seção) é exibida.
-         * @param {string} pageId - O ID da seção a ser mostrada.
-         */
         function showPage(pageId) {
-            window.scrollTo(0, 0); // Leva o usuário para o topo da página
+            window.scrollTo(0, 0);
             pageSections.forEach(section => {
                 section.style.display = section.id === pageId ? 'block' : 'none';
             });
             if (pageId === 'ebooks') {
                 filterAndSortBooks();
             }
-            lucide.createIcons(); // Re-renderiza os ícones para a seção visível
+            lucide.createIcons();
         }
 
-        /**
-         * Lida com o clique nos links de navegação.
-         * @param {Event} e - O evento de clique.
-         */
         function handleNav(e) {
             e.preventDefault();
             const targetId = e.currentTarget.getAttribute('href').substring(1);
             showPage(targetId);
-            mobileMenu.classList.add('hidden'); // Fecha o menu mobile
+            mobileMenu.classList.add('hidden');
         }
 
-        /**
-         * Filtra e classifica os livros no catálogo com base nas seleções do usuário.
-         */
         function filterAndSortBooks() {
             let filteredBooks = [...books];
             const activeFilter = document.querySelector('.filter-btn.bg-dourado-ocre').dataset.filter;
             if (activeFilter !== '*') {
                 filteredBooks = filteredBooks.filter(book => book.category === activeFilter);
             }
-
             const sortBy = sortSelect.value;
             if (sortBy === 'az') filteredBooks.sort((a, b) => a.title.localeCompare(b.title));
             else if (sortBy === 'za') filteredBooks.sort((a, b) => b.title.localeCompare(a.title));
             else filteredBooks.sort((a, b) => (b.launch ? 1 : -1) - (a.launch ? 1 : -1) || a.id - b.id);
-            
             renderBooks(ebooksGrid, filteredBooks);
         }
 
-        // --- EVENT LISTENERS (OUVINTES DE EVENTOS) ---
-        // Funções que "escutam" por ações do usuário (cliques, mudanças, etc.).
-
+        // --- EVENT LISTENERS ---
         function addBookCardEventListeners() {
-            document.querySelectorAll('.book-card').forEach(card => {
-                card.addEventListener('click', () => {
+            document.querySelectorAll('.book-card, .book-card-link').forEach(card => {
+                card.addEventListener('click', (e) => {
+                    e.preventDefault();
                     const bookId = parseInt(card.dataset.id);
                     const book = books.find(b => b.id === bookId);
                     renderBookDetail(book);
@@ -599,75 +569,49 @@
             e.preventDefault();
             const category = e.currentTarget.dataset.category;
             showPage('ebooks');
-            document.querySelector(`.filter-btn[data-filter="${category}"]`).click();
+            document.querySelector(`.filter-btn[data-filter="${category}"]`)?.click();
             categoryDescription.textContent = `Explorando a categoria: ${category}`;
         }));
         closeModalButton.addEventListener('click', () => ublModal.style.display = 'none');
         ublModal.addEventListener('click', (e) => { if (e.target === ublModal) ublModal.style.display = 'none'; });
 
-        /**
-         * Lida com o envio do formulário de submissão de autores.
-         * Esta função agora formata os dados e redireciona para o WhatsApp.
-         */
         submissionForm.addEventListener('submit', (e) => {
-            e.preventDefault(); // Impede o envio padrão do formulário.
-
-            // <<< EDITE AQUI >>> Coloque o seu número de WhatsApp com o código do país (ex: 5511999998888).
+            e.preventDefault();
             const seuNumeroWhatsApp = '5511999998888'; 
-
-            // Pega os valores dos campos do formulário.
             const nome = document.getElementById('author-name').value;
             const email = document.getElementById('author-email').value;
             const titulo = document.getElementById('manuscript-title').value;
             const categoria = document.getElementById('manuscript-category').value;
             const pitch = document.getElementById('manuscript-pitch').value;
             const nomeArquivo = document.getElementById('manuscript-file').files[0]?.name || 'Nenhum arquivo selecionado';
-
-            // Monta a mensagem que será enviada.
             const mensagem = `
 Olá, Epollo!
-
 Gostaria de submeter um manuscrito para avaliação.
-
 *Nome do Autor:* ${nome}
 *Email:* ${email}
 *Título Provisório:* ${titulo}
 *Categoria:* ${categoria}
 *Resumo da Obra:*
 ${pitch}
-
 *Nome do Arquivo Anexado:* ${nomeArquivo}
-
 ---
 *AVISO IMPORTANTE: Por favor, anexe o arquivo do manuscrito nesta conversa do WhatsApp.*
             `;
-
-            // Codifica a mensagem para ser usada em uma URL.
             const mensagemCodificada = encodeURIComponent(mensagem.trim());
-
-            // Cria o link do WhatsApp.
             const linkWhatsApp = `https://wa.me/${seuNumeroWhatsApp}?text=${mensagemCodificada}`;
-
-            // Mostra uma mensagem de sucesso e redireciona.
             submissionSuccess.innerHTML = 'Proposta pronta! Redirecionando para o WhatsApp...';
             submissionSuccess.classList.remove('hidden');
-            
-            // Abre o WhatsApp em uma nova aba.
             window.open(linkWhatsApp, '_blank');
-
-            // Limpa o formulário e esconde a mensagem de sucesso após alguns segundos.
             setTimeout(() => {
                 submissionForm.reset();
                 submissionSuccess.classList.add('hidden');
             }, 5000);
         });
 
-
         // --- INICIALIZAÇÃO ---
-        // Código que roda assim que a página termina de carregar.
         document.addEventListener('DOMContentLoaded', () => {
             renderBooks(lancamentosGrid, books.filter(b => b.launch));
-            showPage('home'); // Mostra a página inicial por padrão.
+            showPage('home');
         });
 
     </script>
